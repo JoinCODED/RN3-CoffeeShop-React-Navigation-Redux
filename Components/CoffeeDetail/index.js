@@ -9,7 +9,6 @@ import {
   Left,
   Body,
   Right,
-  Icon,
   List,
   ListItem,
   Picker,
@@ -20,28 +19,25 @@ import {
 import styles from "./styles";
 
 class CoffeeDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      drink: "Coffee",
-      option: "Small"
-    };
-  }
+  state = {
+    drink: "Cappuccino",
+    option: "Small"
+  };
 
-  changeDrink(value) {
+  changeDrink = value => {
     this.setState({
       drink: value
     });
-  }
+  };
 
-  changeOption(value) {
+  changeOption = value => {
     this.setState({
       option: value
     });
-  }
+  };
 
   render() {
-    const coffeeshops = this.props.coffee.coffeeshops;
+    const { coffeeshops } = this.props.coffee;
     if (!coffeeshops) return <Content />;
     const coffeeshop = coffeeshops[0];
     return (
@@ -66,9 +62,9 @@ class CoffeeDetail extends Component {
                 mode="dropdown"
                 style={{ width: 150 }}
                 selectedValue={this.state.drink}
-                onValueChange={this.changeDrink.bind(this)}
+                onValueChange={this.changeDrink}
               >
-                <Picker.Item label="Coffee" value="Coffee" />
+                <Picker.Item label="Cappuccino" value="Cappuccino" />
                 <Picker.Item label="Lattee" value="Lattee" />
                 <Picker.Item label="Espresso" value="Espresso" />
               </Picker>
@@ -79,7 +75,7 @@ class CoffeeDetail extends Component {
                 mode="dropdown"
                 style={{ width: 150 }}
                 selectedValue={this.state.option}
-                onValueChange={this.changeOption.bind(this)}
+                onValueChange={this.changeOption}
               >
                 <Picker.Item label="Small" value="Small" />
                 <Picker.Item label="Medium" value="Medium" />
